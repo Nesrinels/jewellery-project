@@ -71,20 +71,43 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     borderBottom: '1px solid #eee',
     padding: '10px 0',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   name: {
-    width: "120px"
+    width: "120px",
+    flex: '1',
+    marginRight: '10px',
+    textAlign: 'left',
   },
   price: {
-    width: "50px"
+    width: "50px",
+    flex: '0.5',
+    textAlign: 'right',
+    marginRight: '20px',
   },
   quantity: {
-    width: "calc(100% - 170px)"
+    width: "calc(100% - 170px)",
+    flex: '0.5',
+    textAlign:'right',
+  },
+  totalPrice: {
+    textAlign: 'right',
+    fontWeight: 'bold',
+    marginTop: '20px',
   },
 }));
 
 const HomePage = ({cart}) => {
     const classes = useStyles();
+
+    const calculateTotalPrice = () => {
+        return cart.items.reduce((total, item) => {
+            return total + item.product.price * item.quantity;
+        }, 0);
+    }
+
+    const totalPrice = calculateTotalPrice();
 
     return (
       <div className={classes.homepage}>
@@ -120,19 +143,24 @@ const HomePage = ({cart}) => {
             <button className={classes.ctaButton}>SHOP NOW</button>
           </div>
         </section>
-
-        {/* <div className={classes.cartSection}>
-          <Link to="/product-list">Product List</Link>
-          {cart && cart.items.length > 0 &&
-            cart.items.map(item => (
-              <div className={classes.row} key={item.product._id}>
-                <div className={classes.name}>{item.product.name}</div>
-                <div className={classes.price}>{item.product.price}</div>
-                <div className={classes.quantity}>{item.quantity}</div>
+        <div className={classes.cartSection}>
+          <h2>Your Cart</h2>
+          {cart && cart.items.length > 0 ?
+            <>
+              {cart.items.map(item => (
+                <div className={classes.row} key={item.product._id}>
+                  <div className={classes.name}>{item.product.name}</div>
+                  <div className={classes.price}>${item.product.price.toFixed(2)}</div>
+                  <div className={classes.quantity}>Qty: {item.quantity}</div>
+                </div>
+              ))}
+              <div className={classes.totalPrice}>
+                Total: ${totalPrice.toFixed(2)}
               </div>
-            ))
-          }
-        </div> */}
+            </>
+            : <p>Your cart is empty</p>
+        }
+      </div>
       </div>
     );
 }
