@@ -122,7 +122,7 @@ const HomePage = ({cart}) => {
               <option>USD, $</option>
               {/* Add other currency options */}
             </select>
-            <FaUser />
+            <Link to='/login'><FaUser /></Link>
             <FaHeart />
             <FaShoppingCart />
           </div>

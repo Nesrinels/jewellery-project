@@ -93,29 +93,6 @@ const ProductListPage = ({ cart, updateCartItem }) => {
     }
 
     return (
-        // <div>
-        //     <div>
-        //         {
-        //             products && products.length > 0 &&
-        //             products.map(product =>
-        //                 <div className={classes.row} key={product._id}>
-        //                     <div className={classes.name}>{product.name}</div>
-        //                     <div className={classes.price}>${product.price}</div>
-                            
-        //                     <Button 
-        //                         size="small" 
-        //                         variant="outlined"
-        //                         onClick={() => handleAddToCart(product)}
-        //                     >
-        //                         Add to Cart
-        //                     </Button>
-
-        //                 </div>
-        //             )
-        //         }
-        //     </div>
-        //     <Button variant="outlined" onClick={handleCheckout}>Checkout</Button>
-        // </div>
         <div className={classes.root}>
       <Grid container spacing={4}>
         {products.map((product) => (

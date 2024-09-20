@@ -4,14 +4,6 @@ import {
     UPDATE_CART_ITEM_QUANTITY,
 } from './cart.actions';
 
-/**
- * 
- * item: ICartItem = {
- *  product,
- *  quantity: number,
- * }
- * 
- */
 export const cartReducer = (state = { items: [] }, action) => {
     switch (action.type) {
         case CLEAR_CART:
